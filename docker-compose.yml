@@ -1,0 +1,21 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"  # Замените порт на нужный
+    volumes:
+      - ./templates:/app/templates  # Монтируем директорию с шаблонами
+    depends_on:
+      - db  # Если есть зависимость от базы данных
+
+  db:
+    image: postgres:14  # Выберите нужный образ PostgreSQL
+    environment:
+      POSTGRES_DB: web_resource
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 04041954-
+    ports:
+      - 5432:5432
